@@ -14,7 +14,8 @@ class App extends Component {
 		this.state = {
 			word: '',
 			wordTranslate: '',
-			repetitions: ''
+			repetitions: '',
+			wordArray: db.result
 		}
 	}
 
@@ -29,6 +30,7 @@ class App extends Component {
 	addWord = () => {
 		let word = this.state.word;
 		let wordTranslate = this.state.wordTranslate;
+		let repetitions = '+';
 		// проверка на наличие слова в словаре
 		db.words.toArray(arr => {
 			if (arr.map(el => el.word + el.wordTranslate).includes(`${word}${wordTranslate}`)) {
@@ -37,7 +39,7 @@ class App extends Component {
 			} else {
 				// усли нет - записывается
 				if (word !== '' && wordTranslate !== '') {
-					db.words.add({word, wordTranslate});
+					db.words.add({word, wordTranslate, repetitions});
 				}
 			}
 		});
@@ -46,9 +48,10 @@ class App extends Component {
 	}
 
 	render() {
+
 		return (
 			<div className="App">
-				<Header data={db.words.toArray(item => item.length)} />
+				<Header data={'ads'} />
 				<AddWordForm data={db.words.toArray()}
 							 changeWord={this.changeWord}
 							 addWord={this.addWord}/>
