@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    justify-content: center;
+    margin: 10px auto;
+}
+
+.container__word, .container__wordTranslate {
+    margin: 10px;
+}
+
+.container__word__label, .container__wordTranslate__label {
+    text-decoration: none;
+    font-family: SansSerif, serif;
+    font-size-adjust: 0.7;
+}
+
+.container__wordTranslate__word, .container__word__word {
+    font-family: monospace;
+    font-size-adjust: 1;
+    font-weight: 50;
+}
+.right {
+    background-color: #04cc04;
+}
+
+.not-right {
+    background-color: crimson;
+}

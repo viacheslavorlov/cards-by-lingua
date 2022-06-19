@@ -1,13 +1,13 @@
 import Card from "../card/card";
 
 
-const CardsHolder = props => {
+const CardsHolder = (props) => {
 	const arr = props.data;
 
 		return (
 
-			arr.map(item => {
-				return <Card item={item}/>
+			arr.map((item, i) => {
+				return <Card item={item} key={i}/>
 			}
 		)
 	)

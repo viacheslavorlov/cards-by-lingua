@@ -4,8 +4,6 @@ class Header extends Component {
 	constructor(props) {
 		super(props);
 	}
-
-
 	// filterWordsByLanguage = (lang) => {
 	// 	db.words.toArray(item => { ///////////////////////
 	// 		item.filter(el => el.language === lang); ///////////////////////
@@ -13,14 +11,16 @@ class Header extends Component {
 	// }
 
 	render() {
-		this.props.calculateAmountOfWords()
+		const {calculateAmountOfWords, changeLanguageBySelect, changeWord} = this.props;
+		const {language, wordsLength} = this.props.data;
+		calculateAmountOfWords();
 		return (
 			<header>
 				<h1>Повторяем слова</h1>
 
 				<label htmlFor='selectLanguage'>Выберите язык из списка: <select
 					id='selectLanguage'
-					onChange={(e) => this.props.changeLanguageBySelect(e)}>
+					onChange={(e) => changeLanguageBySelect(e)}>
 						<option value=''></option>
 						<option value={'english'}>English</option>
 						<option value={'russian'}>Russian</option>
@@ -28,9 +28,9 @@ class Header extends Component {
 				</label>
 				<br/>
 				<label htmlFor='language'>Или введите новый язык: </label>
-				<input type='text' id='language' value={this.props.data.language}
-				       onChange={(ev) => this.props.changeWord(ev)}/>
-				<p>Всего слов в словаре: <span>{this.props.data.wordsLength}</span></p>
+				<input type='text' id='language' value={language}
+				       onChange={(ev) => changeWord(ev)}/>
+				<p>Всего слов в словаре: <span>{wordsLength}</span></p>
 			</header>
 		)
 	}

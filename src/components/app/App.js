@@ -74,6 +74,10 @@ class App extends Component {
 
 		});
 	}
+	//
+	// addRepetition = () => {
+	//
+	// }
 
 
 	render() {
