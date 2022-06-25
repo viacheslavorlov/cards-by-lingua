@@ -1,9 +1,7 @@
 import {Component} from "react";
 
 class Header extends Component {
-	constructor(props) {
-		super(props);
-	}
+
 	// filterWordsByLanguage = (lang) => {
 	// 	db.words.toArray(item => { ///////////////////////
 	// 		item.filter(el => el.language === lang); ///////////////////////

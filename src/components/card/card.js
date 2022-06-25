@@ -2,20 +2,17 @@ import './card.css';
 import {Component} from "react";
 
 class Card extends Component {
-	constructor(props) {
-		super(props);
-	}
+
 	showWord = (e) => {
 		e.target.nextElementSibling.classList.add('show');
 		e.target.nextElementSibling.classList.remove('hide');
 	}
 
 	render() {
-		const {word, wordTranslate, language} = this.props.item;
-		const keyGen = this.props.i;
+		const {word, wordTranslate, language, id} = this.props.item;
 
 		return (
-			<li key={keyGen} className={'container'}>
+			<li key={id.toString()} className={'container'}>
 				<div className={'container__word'}>
 					<h3 className={'container__word__label'}>Слово ({language}):</h3>
 					<h3 className={'container__word__word'}>{word}</h3>

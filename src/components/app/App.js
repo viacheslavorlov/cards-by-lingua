@@ -25,6 +25,7 @@ class App extends Component {
 	calculateAmountOfWords = () => {
 		db.words.toArray(item => {
 			this.setState(({...this.state, wordsLength: item.length}));
+			this.setState(({...this.state, wordsArray: item}));
 		});
 	}
 
@@ -83,6 +84,7 @@ class App extends Component {
 	render() {
 		document.addEventListener('DOMContentLoaded', this.createWordsArrayInState);
 		const data = [...this.state.wordsArray];
+
 		return (
 			<div className="App">
 				<Header calculateAmountOfWords={this.calculateAmountOfWords}
