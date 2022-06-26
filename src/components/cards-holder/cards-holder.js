@@ -4,10 +4,10 @@ import {Component} from "react";
 
 class CardsHolder extends Component {
 	render() {
-		const arr = this.props.data;
-		return arr.map((item) => {
+		const arr = this.props.data.reverse();
+		return arr.map(item => {
 			return (
-				<Card item={item}/>
+				<Card item={item} key={item.id}/>
 			)
 		});
 	}
