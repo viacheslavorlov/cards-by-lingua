@@ -1,8 +1,8 @@
 .container {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 4fr 1fr 4fr;
     width: 90vw;
-    justify-content: center;
+    justify-content: space-between;
     margin: 10px auto;
 }
 
