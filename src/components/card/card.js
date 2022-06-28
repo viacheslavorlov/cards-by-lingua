@@ -15,11 +15,12 @@ class Card extends Component {
 		}
 	}
 
+
 	render() {
-		const {word, wordTranslate, language} = this.props.item;
+		const {word, wordTranslate, language, id} = this.props.item;
 
 		return (
-			<li className={'container'}>
+			<li className={'container'} id={id}>
 				<div className={'container__word'}>
 					<h3 className={'container__word__label'}>Слово ({language}):</h3>
 					<h3 className={'container__word__word'}>{word}</h3>
@@ -28,8 +29,8 @@ class Card extends Component {
 				<div className={'container__wordTranslate hide'}>
 					<h3 className={'container__wordTranslate__label'}>Перевод:</h3>
 					<h3 className={'container__wordTranslate__word'}>{wordTranslate}</h3>
-					<button className={'right'} >Верно</button>
-					<button className={'not-right'}>Не верно</button>
+					<button className={'right'} onClick={e => this.props.onAddRepetition(e)}>Верно</button>
+					<button className={'not-right'} onClick={e => this.props.onDelete(e)}>Не верно</button>
 				</div>
 
 			</li>

@@ -4,12 +4,12 @@ import {Component} from "react";
 
 class CardsHolder extends Component {
 	render() {
-		const arr = this.props.data.reverse();
-		return arr.map(item => {
+		const {data, onAddRepetition, onDelete} = this.props;
+		return data.map(item => {
 			return (
-				<Card item={item} key={item.id}/>
+				<Card item={item} key={item.id} onAddRepetition={onAddRepetition} onDelete={onDelete}/>
 			)
-		});
+		}).reverse();
 	}
 }
 

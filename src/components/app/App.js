@@ -8,12 +8,8 @@ import AddWordForm from "../add-word-form/add-word-form";
 import CardsHolder from "../cards-holder/cards-holder";
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		// создание состояния для записи нового слова в словарь
-	this.getArrayTooState();
-	}
 
+// создание состояния для записи нового слова в словарь
 	state = {
 		word: '',
 		wordTranslate: '',
@@ -54,36 +50,44 @@ class App extends Component {
 		// проверка на наличие слова в словаре
 		if (arrayFromState.includes(`${word}${wordTranslate}`)) {
 			alert(`"${word}" as ${wordTranslate} already in database!`);
-		} else if (word !== '' && wordTranslate !== '') {
+		} else if (word !== '' && wordTranslate !== '' && language !== '') {
 			db.words.add({word, wordTranslate, language, repetitions});
 		} else {
-			alert('Enter the word please!');
+			alert('Enter the word, translate and language please!');
 		}
 
 		// очистка полей ввода
 		this.setState(state => ({...state, word: '', wordTranslate: ''}));
 	}
 
-
-	createWordsArrayInState = async () => {
-		await db.words.toArray(arr => {
-			arr.forEach(item => {
-				if (item.word !== '' && item.wordTranslate !== '' && !this.state.wordsArray.includes(item)) {
-					this.setState(state => state.wordsArray.push(item))
-				}
-			});
-
-		});
+	onAddRepetition = async (e) => {
+		await db.words.update(parseInt(e.target.parentElement.parentElement.id, 10), {repetitions: '!!!'});
 	}
+
+	onDeleteWord = async (e) => {
+		await db.words.delete(parseInt(e.target.parentElement.parentElement.id, 10));
+	}
+
+
+	// createWordsArrayInState = async () => {
+	// 	await db.words.toArray(arr => {
+	// 		arr.forEach(item => {
+	// 			if (item.word !== '' && item.wordTranslate !== '' && !this.state.wordsArray.includes(item)) {
+	// 				this.setState(state => state.wordsArray.push(item))
+	// 			}
+	// 		});
+	//
+	// 	});
+	// }
 	//
 	// addRepetition = () => {
 	//
 	// }
-
+	componentDidMount() {
+		this.getArrayTooState().then(r =>r);
+	}
 
 	render() {
-		// document.addEventListener('DOMContentLoaded', this.createWordsArrayInState);
-
 		const data = [...this.state.wordsArray];
 
 		return (
@@ -96,7 +100,9 @@ class App extends Component {
 				<AddWordForm changeWord={this.changeWord}
 				             addWord={this.addWord}/>
 				<ul>
-					<CardsHolder data={data}/>
+					<CardsHolder data={data}
+					             onAddRepetition={this.onAddRepetition}
+								 onDelete={this.onDeleteWord}/>
 				</ul>
 			</div>
 		);

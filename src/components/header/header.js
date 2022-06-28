@@ -8,10 +8,14 @@ class Header extends Component {
 	// 	});
 	// }
 
+	componentDidMount() {
+		this.props.calculateAmountOfWords();
+	}
+
 	render() {
-		const {calculateAmountOfWords, changeLanguageBySelect, changeWord} = this.props;
+		const {changeLanguageBySelect, changeWord} = this.props;
 		const {language, wordsLength} = this.props.data;
-		calculateAmountOfWords();
+
 		return (
 			<header>
 				<h1>Повторяем слова</h1>
