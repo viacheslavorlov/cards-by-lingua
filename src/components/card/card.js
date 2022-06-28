@@ -30,9 +30,9 @@ class Card extends Component {
 					<h3 className={'container__wordTranslate__label'}>Перевод:</h3>
 					<h3 className={'container__wordTranslate__word'}>{wordTranslate}</h3>
 					<button className={'right'} onClick={e => this.props.onAddRepetition(e)}>Верно</button>
-					<button className={'not-right'} onClick={e => this.props.onDelete(e)}>Не верно</button>
+					<button className={'not-right'}>Не верно</button>
 				</div>
-
+				{/* onClick={e => this.props.onDelete(e)создать отдельную кнопку для удаления*/}
 			</li>
 		)
 	}
