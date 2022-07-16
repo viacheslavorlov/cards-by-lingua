@@ -7,7 +7,11 @@ class CardsHolder extends Component {
 		const {data, onAddRepetition, onDelete} = this.props;
 		return data.map(item => {
 			return (
-				<Card item={item} key={item.id} onAddRepetition={onAddRepetition} onDelete={onDelete}/>
+				<Card
+					item={item}
+					key={item.id}
+					onAddRepetition={onAddRepetition}
+					onDelete={onDelete}/>
 			)
 		}).reverse();
 	}

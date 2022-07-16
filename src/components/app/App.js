@@ -60,9 +60,6 @@ class App extends Component {
 		this.setState(state => ({...state, word: '', wordTranslate: ''}));
 	}
 
-	onAddRepetition = async (e) => {
-		await db.words.update(parseInt(e.target.parentElement.parentElement.id, 10), {repetitions: '!!!'});
-	}
 
 	onDeleteWord = async (e) => {
 		await db.words.delete(parseInt(e.target.parentElement.parentElement.id, 10));
@@ -84,7 +81,7 @@ class App extends Component {
 	//
 	// }
 	componentDidMount() {
-		this.getArrayTooState().then(r =>r);
+		this.getArrayTooState().then(r => r);
 	}
 
 	render() {
@@ -101,8 +98,7 @@ class App extends Component {
 				             addWord={this.addWord}/>
 				<ul>
 					<CardsHolder data={data}
-					             onAddRepetition={this.onAddRepetition}
-								 onDelete={this.onDeleteWord}/>
+					             onDelete={this.onDeleteWord}/>
 				</ul>
 			</div>
 		);

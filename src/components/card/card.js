@@ -1,7 +1,31 @@
 import './card.css';
 import {Component} from "react";
+import {db} from "../db/db";
 
 class Card extends Component {
+	//
+	// constructor(props) {
+	// 	super(props);
+	// 	this.state = {
+	// 		repetitions: ''
+	// 	}
+	// }
+	state = {
+		repetitions: ''
+	}
+	setRepetitions = () => {
+		this.setState(state => ({repetitions: this.props.item.repetitions}));
+	}
+	componentDidMount() {
+		this.setRepetitions();
+	}
+
+	addRepetietions = (e, trueOrNot) => {
+		db.words.update(parseInt(e.target.parentElement.parentElement.id, 10), {repetitions: this.state.repetitions + trueOrNot});
+		e.target.parentElement.parentElement.remove();
+	}
+
+
 
 	showOrHideWord = (e) => {
 		if (e.target.nextElementSibling.classList.contains('hide')) {
@@ -29,8 +53,8 @@ class Card extends Component {
 				<div className={'container__wordTranslate hide'}>
 					<h3 className={'container__wordTranslate__label'}>Перевод:</h3>
 					<h3 className={'container__wordTranslate__word'}>{wordTranslate}</h3>
-					<button className={'right'} onClick={e => this.props.onAddRepetition(e)}>Верно</button>
-					<button className={'not-right'}>Не верно</button>
+					<button className={'right'} onClick={(e) => this.addRepetietions(e, '+')}>Верно</button>
+					<button className={'not-right'} onClick={(e) => this.addRepetietions(e, '-')}>Не верно</button>
 				</div>
 				{/* onClick={e => this.props.onDelete(e)создать отдельную кнопку для удаления*/}
 			</li>
