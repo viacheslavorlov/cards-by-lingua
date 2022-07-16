@@ -8,15 +8,20 @@ class Header extends Component {
 	// 	});
 	// }
 
+	componentDidMount() {
+		this.props.calculateAmountOfWords();
+	}
+
 	render() {
-		const {calculateAmountOfWords, changeLanguageBySelect, changeWord} = this.props;
+		const {changeLanguageBySelect, changeWord} = this.props;
 		const {language, wordsLength} = this.props.data;
-		calculateAmountOfWords();
+
 		return (
 			<header>
 				<h1>Повторяем слова</h1>
 
-				<label htmlFor='selectLanguage'>Выберите язык из списка: <select
+				<label htmlFor='selectLanguage'>Выберите язык из списка:
+					<select
 					id='selectLanguage'
 					onChange={(e) => changeLanguageBySelect(e)}>
 						<option value=''></option>
